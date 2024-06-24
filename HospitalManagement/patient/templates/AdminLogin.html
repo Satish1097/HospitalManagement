@@ -1,0 +1,19 @@
+{% block container %}
+<div class="login-container">
+    {% if msg %}
+    <div class="error-message" style="color: red;">
+        {{ msg }}
+    </div>
+    {% endif %}    <h2>Admin Login</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="admin_id">Admin ID</label>
+        <input type="text" id="admin_id" name="admin_id" required>
+        
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        
+        <button type="submit">Login</button>
+    </form>
+</div>
+{% endblock container %}

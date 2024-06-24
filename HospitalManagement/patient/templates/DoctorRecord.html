@@ -1,0 +1,27 @@
+{% extends "AdminPanel.html" %}
+{% block container %}
+<h1>Doctors List</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Doctor ID</th>
+      <th>Date of Joining</th>
+      <th>Gender</th>
+      <th>Speciality</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for doctor in doctors %}
+    <tr>
+      <td>{{ doctor.Name }}</td>
+      <td>{{ doctor.DoctorId }}</td>
+      <td>{{ doctor.DOJ }}</td>
+      <td>{{ doctor.Gender }}</td>
+      <td>{{ doctor.Speciality }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock container %}

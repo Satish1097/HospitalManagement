@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+{% block container %}
+<div class="login-container">
+    <h2>Doctor Login</h2>
+    <form>
+        {% csrf_token %}
+        <label for="doctorId">Doctor ID:</label>
+        <input type="text" id="doctorId" name="doctorId" placeholder="Enter your Doctor ID" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        
+        <button type="submit">Login</button>
+    </form>
+</div>
+{% endblock container %}

@@ -1,0 +1,31 @@
+{% extends "index.html" %}
+{% block container %}
+<div class="profile-container">
+    <div class="profile-card">
+        <div class="profile-header">
+            <img src="{{ patient.image.url }}" alt="Patient Image" class="profile-image">
+            <h1 class="profile-name">{{ patient.Name }}</h1>
+        </div>
+        <div class="profile-details">
+            <div class="detail-item">
+                <span class="detail-label">Email:</span>
+                <span class="detail-value">{{ patient.email }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">DOB:</span>
+                <span class="detail-value">{{ patient.DOB }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Phone:</span>
+                <span class="detail-value">{{ patient.contact }}</span>
+            </div>
+        </div>
+        <div class="profile-actions">
+            <a href="{% url 'PatientUpdate' patient.id %}" class="action-button">Edit Profile</a>
+            <a href="#" class="action-button">Logout</a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock container %}

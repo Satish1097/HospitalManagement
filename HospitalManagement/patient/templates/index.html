@@ -1,0 +1,41 @@
+{% block header %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{%static 'css/style.css' %}">
+
+</head>
+<body>
+    <header class="header">
+        <h1>Hospital Management System</h1>
+        <ul class="nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="{% url 'PatientRegister' %}">Patient</a></li>
+          <li><a href="#">Doctor</a></li>
+          <li><a href="#">Appointment</a></li>
+
+        </ul>
+      </header>
+    {% endblock header %}
+    {% block container %}{% endblock container %}
+    {% block footer %}
+    <footer class="footer">
+        <p>Hospital Management System</p>
+        <p>123 Health St, Wellness City, HW 54321</p>
+        <p>Phone: (123) 456-7890</p>
+        <div class="social-links">
+          <a href="#" title="Facebook">FB</a>
+          <a href="#" title="Twitter">TW</a>
+          <a href="#" title="LinkedIn">LI</a>
+        </div>
+        <p>&copy; 2024 Hospital Management System. All rights reserved.</p>
+      </footer>
+    
+</body>
+</html>
+{% endblock footer %}

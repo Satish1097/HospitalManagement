@@ -1,0 +1,66 @@
+from django.shortcuts import render,redirect,HttpResponse
+from . models import PatientRegistration
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
+
+# Create your views here.
+def Home(req):
+    return render(req,"home.html")
+def PatientRegister(req):
+    if req.method=='GET':
+        return render(req,"PatientRegistration.html")
+    else:
+        Name=req.POST.get('name')
+        Gender=req.POST.get('gender')
+        email=req.POST.get('email')
+        contact=req.POST.get('contact')
+        image=req.FILES.get('image')
+        password=req.POST.get('password')
+        
+        if PatientRegistration.objects.filter(email=email):
+            msg="Already exist"
+            return render(req,'Home',{'msg':msg})
+        else:
+            PatientRegistration.objects.create(
+                Name=Name,
+                Gender=Gender,
+                email=email,
+                contact=contact,
+                image=image,
+                password=password
+            )
+            return redirect('/')
+        
+def PatientLogin(req):
+    if req.method=='GET':
+        return render(req,'PatientLogin.html')
+    else:
+        email=req.POST.get('email')
+        password=req.POST.get('password')
+
+        patientValidate=PatientRegistration.objects.get(email=email, password=password)
+        if(patientValidate):
+            return redirect('PatientProfile', pid=patientValidate.id)
+        else:
+            return HttpResponse("doesn't Exist")
+@login_required
+def PatientProfile(req,pid):
+    patient = get_object_or_404(PatientRegistration, id=pid)
+    context = {'patient': patient}
+    return render(req,'PatientProfile.html', context)
+
+def PatientUpdate(req,pid):
+    data=PatientRegistration.objects.get(id=pid)
+    return render(req,'PatientUpdateForm.html',{"data":data})
+def PatientUpdateSave(req,pid):
+    patient=PatientRegistration.objects.get(id=pid)
+    patient.Name=req.POST.get('name')
+    patient.Gender=req.POST.get('gender')
+    patient.email=req.POST.get('email')
+    patient.contact=req.POST.get('contact')
+    patient.image=req.FILES.get('image')
+    patient.password=req.POST.get('password')
+    
+    patient.save()
+    return redirect('PatientProfile')
+

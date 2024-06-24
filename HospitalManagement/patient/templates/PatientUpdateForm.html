@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+{% block container %}
+<div class="PatientRegister">
+<form action="{% url 'PatientUpdateSave' data.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" value="{{data.Name}}" id="name" name="name" required>
+    </div>
+    <div>
+      <label for="gender">Gender:</label>
+      <input type="text" value="{{data.Gender}}" name="gender" required>
+    </div>
+    
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" value="{{data.email}}" name="email" required>
+    </div>
+    <div>
+      <label for="contact">Contact:</label>
+      <input type="number" id="contact" value="{{data.contact}}" name="contact" required>
+    </div>
+    <div>
+      <label for="image">Image:</label>
+      <input type="file" id="image" name="image" required>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" value="{{data.password}}" name="password" required>
+    </div>
+    <button type="submit">Register</button>
+  </form>
+</div>
+  
+
+{% endblock container %}

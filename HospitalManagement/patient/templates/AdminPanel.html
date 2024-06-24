@@ -1,0 +1,55 @@
+{% block header %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="{%static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="container">
+                <a class="nav-brand" href="">Admin Panel</a>
+                <button class="nav-toggler" type="button" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="nav-toggler-icon"></span>
+                </button>
+                <div class="nav-collapse" id="navbarNav">
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'ManageDoctor' %}">Manage Doctors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'ManagePatient' %}">Manage Patients</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Patient Appointments</a>
+                        </li>
+                        <!-- Add more navigation links as needed -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    {% block container %}{% endblock container %}
+
+    {% block footer %}
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-copyright">
+                    <p>&copy; 2023 Admin Panel. All rights reserved.</p>
+                </div>
+                <div class="footer-powered">
+                    <p>Powered by Django</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    {% endblock footer %}
+</body>
+</html>
+{% endblock header %}
