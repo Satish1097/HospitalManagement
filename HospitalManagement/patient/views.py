@@ -87,7 +87,7 @@ def PatientApointment(request):
                         Disease=disease,
                         Name=patient  # Properly associating the patient
                     )
-                    return render(request, "PatientApointmentDetail.html", {'Details': [Apointment]})
+                    return redirect('AppointmentDetail')
                 except PatientRegistration.DoesNotExist:
                     return HttpResponse("Patient does not exist")
             else:
@@ -96,3 +96,16 @@ def PatientApointment(request):
     else:
         form = appointment_form()
     return render(request, 'Apointmentform.html', {'form': form})
+
+def AppointmentDetail(req):
+    patient_id = req.session.get('PatientId')
+    if patient_id:
+        try:
+            data = Apointment.objects.get(id=patient_id)
+            return render(req, 'PatientApointmentDetail.html', {'data': data})
+        except Apointment.DoesNotExist:
+            return render(req, 'PatientApointmentDetail.html', {'error': 'Appointment not found'})
+    return render(req, 'PatientApointmentDetail.html', {'error': 'Patient ID not found in session'})
+
+def AppointmentPayment(req):
+    return HttpResponse('Pay your fee')

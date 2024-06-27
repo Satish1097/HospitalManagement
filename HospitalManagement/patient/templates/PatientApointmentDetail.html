@@ -1,8 +1,28 @@
 {% extends "index.html" %}
 {% block container %}
-    {% if Details %}
-        <h1>{{ Details.0.Name.name }}</h1>
+<div class="container mt-5">
+    {% if data %}
+    <div class="card">
+        <div class="card-header">
+            <h1 class="card-title">Appointment Details</h1>
+        </div>
+        <div class="card-body">
+            <p class="card-text"><strong>Patient Name:</strong> {{ data.Name }}</p>
+            <p class="card-text"><strong>Patient Email:</strong> {{ data.Name.email }}</p>
+            <p class="card-text"><strong>Patient Contact:</strong> {{ data.Name.contact }}</p>
+            <p class="card-text"><strong>Patient Gender:</strong> {{ data.Name.Gender }}</p>
+            <p class="card-text"><strong>Patient DOB:</strong> {{ data.Name.DOB }}</p>
+            <p class="card-text"><strong>Patient Blood:</strong> {{ data.Blood_Group }}</p>
+            <p class="card-text"><strong>Patient Disease:</strong> {{ data.Disease }}</p>
+        </div>
+        <button><a href="{% url "AppointmentPayment" %}">Pay fee</a></button>
+
+        <div class="card-footer text-muted">
+            <!-- You can add footer details here -->
+        </div>
+    </div>
     {% else %}
-        <p>No appointment details available.</p>
+    <h1>{{ error }}</h1>
     {% endif %}
+</div>
 {% endblock container %}

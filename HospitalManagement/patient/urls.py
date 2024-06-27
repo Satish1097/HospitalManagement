@@ -10,4 +10,7 @@ urlpatterns = [
     path('PatientUpdate/<int:pid>/',views.PatientUpdate, name='PatientUpdate'),
     path('PatientUpdateSave<int:pid>',views.PatientUpdateSave, name='PatientUpdateSave'),
     path('PatientApointment',views.PatientApointment,name='PatientApointment'),
+    path('AppointmentDetail',views.AppointmentDetail,name='AppointmentDetail'),
+    path('AppointmentPayment',views.AppointmentPayment,name='AppointmentPayment'),
+
 ]

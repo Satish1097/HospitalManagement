@@ -7,7 +7,6 @@ body {
 .header {
     background-color: #008CBA;
     color: white;
-    padding: 15px 20px;
     text-align: center;
     display: flex;
     justify-content: space-between;
@@ -72,7 +71,6 @@ body {
 .footer {
     background-color: #222;
     color: white;
-    padding: 20px;
     text-align: center;
     width: 100%;
     bottom: 0;
@@ -99,9 +97,7 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .footer {
-        padding: 10px;
-    }
+    
 
     .social-links {
         margin: 5px 0;
@@ -560,4 +556,36 @@ button {
 
 button:hover {
     background-color: #45a049;
+}
+
+/*==================AppointmentDetail=====================*/
+
+/* Custom card styling */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #007bff;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-title {
+    margin: 0;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-text {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.card-footer {
+    background-color: #f8f9fa;
 }
