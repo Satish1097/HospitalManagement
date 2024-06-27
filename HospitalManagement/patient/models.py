@@ -20,3 +20,11 @@ class PatientRegistration(models.Model):
 
     def __str__(self):
         return self.Name
+
+class Apointment(models.Model):
+    Blood_Group=models.CharField(max_length=5)
+    Name = models.ForeignKey(PatientRegistration, on_delete=models.CASCADE)
+    Disease =models.CharField(max_length=10,default='unknown')
+    def _str_(self):
+        return self.Blood_Group+self.Disease+self.Name
+    

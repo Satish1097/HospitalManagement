@@ -6,7 +6,8 @@ urlpatterns = [
     path('', views.Home, name='Home'),
     path('PatientRegister/', views.PatientRegister, name='PatientRegister'),
     path('PatientLogin',views.PatientLogin, name='PatientLogin'),
-    path('PatientProfile/<int:pid>/', views.PatientProfile, name='PatientProfile'),
+    path('PatientProfile/', views.PatientProfile, name='PatientProfile'),
     path('PatientUpdate/<int:pid>/',views.PatientUpdate, name='PatientUpdate'),
     path('PatientUpdateSave<int:pid>',views.PatientUpdateSave, name='PatientUpdateSave'),
+    path('PatientApointment',views.PatientApointment,name='PatientApointment'),
 ]

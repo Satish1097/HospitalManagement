@@ -1,0 +1,8 @@
+{% extends "index.html" %}
+{% block container %}
+    {% if Details %}
+        <h1>{{ Details.0.Name.name }}</h1>
+    {% else %}
+        <p>No appointment details available.</p>
+    {% endif %}
+{% endblock container %}

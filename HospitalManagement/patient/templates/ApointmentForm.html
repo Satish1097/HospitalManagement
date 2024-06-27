@@ -1,0 +1,8 @@
+{% extends "index.html" %}
+{% block container %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit">
+</form>
+{% endblock container %}

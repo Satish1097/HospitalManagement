@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect,HttpResponse
 from . models import PatientRegistration
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from .forms import appointment_form
+from .models import Apointment
 
 # Create your views here.
 def Home(req):
@@ -40,14 +42,17 @@ def PatientLogin(req):
 
         patientValidate=PatientRegistration.objects.get(email=email, password=password)
         if(patientValidate):
-            return redirect('PatientProfile', pid=patientValidate.id)
+            x=req.session['PatientId']=patientValidate.id
+            return redirect('PatientProfile')
         else:
             return HttpResponse("doesn't Exist")
 @login_required
-def PatientProfile(req,pid):
-    patient = get_object_or_404(PatientRegistration, id=pid)
-    context = {'patient': patient}
-    return render(req,'PatientProfile.html', context)
+def PatientProfile(req):
+    patient_id = req.session.get('PatientId')
+    if(patient_id):
+        patient = get_object_or_404(PatientRegistration, id=patient_id)
+        context = {'patient': patient}
+        return render(req,'PatientProfile.html', context)
 
 def PatientUpdate(req,pid):
     data=PatientRegistration.objects.get(id=pid)
@@ -64,3 +69,30 @@ def PatientUpdateSave(req,pid):
     patient.save()
     return redirect('PatientProfile')
 
+@login_required
+def PatientApointment(request):
+    if request.method == 'POST':
+        form = appointment_form(request.POST)
+        if form.is_valid():
+            blood_group = form.cleaned_data.get('Blood_Group')
+            disease = form.cleaned_data.get('Disease')
+
+            # Get the patient from the session
+            patient_id = request.session.get('PatientId')
+            if patient_id:
+                try:
+                    patient = PatientRegistration.objects.get(id=patient_id)
+                    Apointment.objects.create(
+                        Blood_Group=blood_group,
+                        Disease=disease,
+                        Name=patient  # Properly associating the patient
+                    )
+                    return render(request, "PatientApointmentDetail.html", {'Details': [Apointment]})
+                except PatientRegistration.DoesNotExist:
+                    return HttpResponse("Patient does not exist")
+            else:
+                return HttpResponse("No patient is logged in")
+
+    else:
+        form = appointment_form()
+    return render(request, 'Apointmentform.html', {'form': form})
